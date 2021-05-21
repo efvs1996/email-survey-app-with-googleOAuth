@@ -7,11 +7,13 @@ require('./models/User');
 require('./services/passport');
 
 
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(mongoURI);
+
+// , {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true
+
 
 const app = express();
 
