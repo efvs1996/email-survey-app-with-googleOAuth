@@ -20,6 +20,6 @@ module.exports = (app) => {
     })
 
     app.get('/api/current_user', (req, res) => {
-        res.send("hola");
+        res.send(req.user, "hola");
     });
 };
