@@ -24,19 +24,14 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback',
     proxy : true
     }, 
-    (accessToken, refreshToken, profile, done) => {
-        User.findOne({ googleId: profile.id}).then(existingUser => {
+    async (accessToken, refreshToken, profile, done) => {
+        const existingUser = await User.findOne({ googleId: profile.id});
+    
             if(existingUser){
-            // chekea si la propiedad es valida o null
                 done(null, existingUser);
-            } else {
-                new User({
-                    googleId: profile.id
-                })
-                .save()
-                .then(user => done(null, user));
             }
-        })
-        console.log('new user added, ', profile.name.givenName)
+            
+            const user = await new User({ googleId: profile.id }).save();
+            done(null, user);
     })
 );
