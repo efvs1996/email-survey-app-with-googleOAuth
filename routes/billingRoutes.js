@@ -17,4 +17,9 @@ module.exports = app => {
 
         res.send(user);
     });
+
+    app.post('/api/hola', (req,res) => {
+        console.log('hola'),
+        res.send('hola')
+    })
 };
